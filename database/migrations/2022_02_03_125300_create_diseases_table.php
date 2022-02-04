@@ -18,6 +18,8 @@ class CreateDiseasesTable extends Migration
             $table->string('name');
             $table->unsignedBigInteger('section_id');
             $table->timestamps();
+
+            $table->foreign('section_id')->references('id')->on('sections')->constrained()->onDelete('cascade');
         });
     }
 
