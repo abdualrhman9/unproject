@@ -19,7 +19,7 @@ class CreateDiseasesTable extends Migration
             $table->unsignedBigInteger('section_id');
             $table->timestamps();
 
-            $table->foreign('section_id')->references('id')->on('sections')->constrained()->onDelete('cascade');
+            // $table->foreign('section_id')->references('id')->on('sections')->constrained()->onDelete('cascade');
         });
     }
 
