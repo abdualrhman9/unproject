@@ -1,5 +1,9 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>Doctor</h1>
+    <div class="contaimer">
+        <div class="row justify-content-center align-items-start">
+            
+        </div>
+    </div>
 @endsection

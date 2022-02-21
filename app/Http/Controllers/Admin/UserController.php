@@ -51,6 +51,7 @@ class UserController extends Controller
             'name'=>$data['name'],
             'email'=>$data['email'],
             'password'=>$data['password'],
+            'role'=>$data['role']
         ]);
 
         return redirect()->back()->with('message','Success Operation');

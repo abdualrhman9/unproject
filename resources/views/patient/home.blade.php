@@ -1,5 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
-    <h1>patient</h1>
+    <section class="navigator" ></section>
+    <div class="container-fluid">
+        <div class="row justify-content-center align-items-start">
+            @include('layouts.patient-sidebar')
+            <x-profile-component :user='$user'></x-profile-component>
+        </div>
+    </div>
 @endsection

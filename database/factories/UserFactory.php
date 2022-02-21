@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Disease;
 use Illuminate\Database\Eloquent\Factories\Factory;
 use Illuminate\Support\Str;
 
@@ -58,7 +59,15 @@ class UserFactory extends Factory
         return $this->state(function(array $attributes){
             return [
                 'role' => 3,
+                'disease_id'=>Disease::factory(),
             ];
+        });
+    }
+
+    public function configure()
+    {
+        return $this->afterCreating(function($user){
+            $user->createToken('factory_token');
         });
     }
 

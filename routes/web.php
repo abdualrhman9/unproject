@@ -6,7 +6,11 @@ use App\Http\Controllers\Admin\DoctorController;
 use App\Http\Controllers\Admin\SectionController;
 use App\Http\Controllers\Admin\UserController;
 use App\Http\Controllers\Doctor\DoctorHomeController;
+use App\Http\Controllers\Patient\DiseaseController as PatientDiseaseController;
+use App\Http\Controllers\Patient\DoctorController as PatientDoctorController;
 use App\Http\Controllers\Patient\PatientHomeController;
+use App\Http\Controllers\Patient\SectionController as PatientSectionController;
+use App\Http\Controllers\SettingsController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -41,7 +45,13 @@ Route::middleware(['auth','can:control-doctor-dashboard'])->prefix('doctor')->na
     Route::get('home',[DoctorHomeController::class,'home'])->name('home');
 });
 
-Route::middleware(['auth','can:control-patient-dashboard'])->prefix('patient')->name('patient.')->group(function(){
-    Route::get('home',[PatientHomeController::class,'home'])->name('home');
-});
 
+Route::middleware(['auth'])->prefix('patients')->name('patients.')->group(function(){
+    Route::get('home',[PatientHomeController::class,'home'])->name('home');
+    Route::resource('diseases',PatientDiseaseController::class);
+    // Route::post('diseases/select',[PatientDiseaseController::class,'select'])->name('diseases.select');
+    Route::resource('sections',PatientSectionController::class);
+    Route::resource('doctors',PatientDoctorController::class);
+    Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('doctors.select');
+    Route::get('settings',[SettingsController::class,'settings'])->name('settings');
+});

@@ -13,4 +13,8 @@ class Disease extends Model
     public function section(){
         return $this->belongsTo(Section::class);
     }
+
+    public function users(){
+        return $this->belongsToMany(User::class);
+    }
 }

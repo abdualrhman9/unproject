@@ -2,6 +2,7 @@
 
 namespace Database\Factories;
 
+use App\Models\Section;
 use Illuminate\Database\Eloquent\Factories\Factory;
 
 class DiseaseFactory extends Factory
@@ -14,7 +15,8 @@ class DiseaseFactory extends Factory
     public function definition()
     {
         return [
-            //
+            'name'=>$this->faker->name(),
+            'section_id'=>Section::factory(),
         ];
     }
 }

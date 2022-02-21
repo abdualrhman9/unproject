@@ -27,7 +27,11 @@
                 aria-describedby="nameHelp">
                 <option selected disabled> Pleases Select Section </option>
                 @foreach($sections as $key=>$section)
-                    <option value="{{ $section->id }}" {{ $section->id == $disease->section->id ? 'selected' : '' }}> {{ $section->name }} </option>
+                    <option 
+                    value="{{ $section->id }}" 
+                    > 
+                    {{ $section->name }} 
+                </option>
                 @endforeach
             </select>
             @error('section_id')
