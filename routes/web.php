@@ -52,6 +52,6 @@ Route::middleware(['auth'])->prefix('patients')->name('patients.')->group(functi
     // Route::post('diseases/select',[PatientDiseaseController::class,'select'])->name('diseases.select');
     Route::resource('sections',PatientSectionController::class);
     Route::resource('doctors',PatientDoctorController::class);
-    Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('doctors.select');
+    // Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('doctors.select');
     Route::get('settings',[SettingsController::class,'settings'])->name('settings');
 });
