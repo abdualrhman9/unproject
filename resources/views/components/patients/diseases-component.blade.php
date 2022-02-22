@@ -36,6 +36,7 @@
       
       axios.post('<?=route('patients.diseases.select')?>',{
         disease_id: disease,
+        user_id: <?=auth()->user()->id?>
       }).then(function(response){
 
           if(response.data && response.data.message == 'success' && response.data.data.id != 0){
