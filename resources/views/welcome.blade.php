@@ -2,7 +2,7 @@
 
 @section('content')
 
-    <section class="hero" style="background-image: url({{ asset('hero.jpg') }})">
+    <section class="hero">
 
         <div class="intro">
             <h1 class="welcome-text"> Welcome To Patient Tracker </h1>
