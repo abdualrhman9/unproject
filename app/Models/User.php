@@ -75,8 +75,5 @@ class User extends Authenticatable
         return in_array($disease->id,$this->diseases->pluck('id')->toArray());
     }
 
-    public function phone(){
-        return $this->hasOne(Phone::class,'member_id');
-    }
 
 }
