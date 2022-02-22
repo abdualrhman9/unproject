@@ -34,7 +34,7 @@
   <script>
     function selectDisease(disease){
       
-      axios.post('/api/patients/diseases/select',{
+      axios.post('<?=route('patients.diseases.select')?>',{
         disease_id: disease,
       }).then(function(response){
 

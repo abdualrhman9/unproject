@@ -21,5 +21,5 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 
 Route::middleware(['auth:sanctum'])->prefix('patients')->name('patients.')->group(function(){
     Route::post('diseases/select',[PatientDiseaseController::class,'select'])->name('diseases.select');
-    Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('diseases.select');
+    Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('doctors.select');
 });
