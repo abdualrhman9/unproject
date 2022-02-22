@@ -18,19 +18,12 @@ class DiseaseController extends Controller
     public function select(Request $request) {
         $data = $request->validate([
             'disease_id'=>'exists:App\Models\Disease,id',
-            'user_id'=> 'exists:App\Models\Disease,id'
         ]);
 
-        User::find($data['user_id'])->diseases()->detach();
-        User::find($data['user_id'])->diseases()->attach($data['disease_id']);
+        $request->user()->diseases()->detach();
+        $request->user()->diseases()->attach($data['disease_id']);
 
-
-        return response()->json([
-            'message'=>'success',
-            'data'=>[
-                'disease'=>Disease::find($data['disease_id'])
-            ]
-        ]);
+        return redirect()->back()->with('message','success');
 
     }
 

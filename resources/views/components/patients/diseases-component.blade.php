@@ -19,9 +19,13 @@
         <td>{{ $disease->name }}</td>
         <td>{{ $disease->section->name }}</td>
         <td>
-          <button id="select-{{ $disease->id }}" onclick="selectDisease(<?=$disease->id?>)" class="selection btn {{ (auth()->user()->hasDisease($disease)) ? 'btn-success' : 'btn-danger' }}">
-            <i class="fa fa-plus"></i>
-          </button>
+          <form action="{{ route('patients.diseases.select') }}" method="post">
+            @csrf
+            <button class="selection btn {{ (auth()->user()->hasDisease($disease)) ? 'btn-success' : 'btn-danger' }}">
+              <input type="hidden" name="disease_id" value="{{ $disease->id }}">
+              <i class="fa fa-plus"></i>
+            </button>
+          </form>
         </td>
       </tr>
 
@@ -29,48 +33,3 @@
   </tbody>
 </table>
 </div>
-
-@section('scripts')
-  <script>
-    function selectDisease(disease){
-      
-      axios.post('<?=route('patients.diseases.select')?>',{
-        disease_id: disease,
-        user_id: <?=auth()->user()->id?>
-      }).then(function(response){
-
-          if(response.data && response.data.message == 'success' && response.data.data.id != 0){
-            
-            let sbtn = document.getElementById('select-'+disease);
-            
-            updateSelected(sbtn);
-          }
-          else
-            console.log('error');
-      });
-
-
-    }
-    
-    
-    function updateSelected(sbtn){
-      let btns = document.querySelectorAll('button.selection');
-      console.log(sbtn.id , btns[0].id);
-      for(let i = 0;i<btns.length;i++){
-      
-        if(btns[i].id == sbtn.id){
-          btns[i].classList.remove('btn-danger');
-          btns[i].classList.add('btn-success');
-        }
-        else {
-          btns[i].classList.remove('btn-success');
-          btns[i].classList.add('btn-danger');
-        }
-      }
-
-      alert('profile data is updated');
-
-    }
-
-  </script>
-@endsection

@@ -49,9 +49,9 @@ Route::middleware(['auth','can:control-doctor-dashboard'])->prefix('doctor')->na
 Route::middleware(['auth'])->prefix('patients')->name('patients.')->group(function(){
     Route::get('home',[PatientHomeController::class,'home'])->name('home');
     Route::resource('diseases',PatientDiseaseController::class);
-    // Route::post('diseases/select',[PatientDiseaseController::class,'select'])->name('diseases.select');
+    Route::post('diseases/select',[PatientDiseaseController::class,'select'])->name('diseases.select');
     Route::resource('sections',PatientSectionController::class);
     Route::resource('doctors',PatientDoctorController::class);
-    // Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('doctors.select');
+    Route::post('doctors/select',[PatientDoctorController::class,'select'])->name('doctors.select');
     Route::get('settings',[SettingsController::class,'settings'])->name('settings');
 });

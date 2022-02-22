@@ -18,12 +18,8 @@ class DoctorController extends Controller
 
         $request->user()->doctors()->attach($data['doctor_id']);
 
-        return response()->json([
-            'message'=>'success',
-            'data' => [
-                'doctor'=>User::find($data['doctor_id']),
-            ]
-        ]);
+        return redirect()->back()->with('message','success');
+
     }
 
     /**
