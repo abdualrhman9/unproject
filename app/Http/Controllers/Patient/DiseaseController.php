@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Patient;
 
 use App\Http\Controllers\Controller;
 use App\Models\Disease;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,10 +18,12 @@ class DiseaseController extends Controller
     public function select(Request $request) {
         $data = $request->validate([
             'disease_id'=>'exists:App\Models\Disease,id',
+            'user_id'=> 'exists:App\Models\Disease,id'
         ]);
 
-       Auth::user()->diseases()->detach();
-       Auth::user()->diseases()->attach($data['disease_id']);
+        User::find($data['user_id'])->diseases()->detach();
+        User::find($data['user_id'])->diseases()->attach($data['disease_id']);
+
 
         return response()->json([
             'message'=>'success',
