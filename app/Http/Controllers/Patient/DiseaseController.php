@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Patient;
 use App\Http\Controllers\Controller;
 use App\Models\Disease;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class DiseaseController extends Controller
 {
@@ -18,8 +19,8 @@ class DiseaseController extends Controller
             'disease_id'=>'exists:App\Models\Disease,id',
         ]);
 
-        $request->user()->diseases()->detach();
-        $request->user()->diseases()->attach($data['disease_id']);
+       Auth::user()->diseases()->detach();
+       Auth::user()->diseases()->attach($data['disease_id']);
 
         return response()->json([
             'message'=>'success',
